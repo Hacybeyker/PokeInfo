@@ -22,6 +22,11 @@ secretsGradlePlugin = "2.0.1"
 androidxComposeRuntimeLiveData = "1.3.2"
 coilCompose = "2.2.2"
 constraintLayoutCompose = "1.0.1"
+retrofit = "2.9.0"
+loggingInterceptor = "4.9.0"
+gson = "2.8.6"
+okHttpJsonMock = "3.0"
+chucker = "3.5.0"
 
 [libraries]
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
@@ -47,8 +52,16 @@ androidx-compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4
 androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "androidxComposeUi" }
 
 junit = { module = "junit:junit", version.ref = "junit" }
+
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
+
+squareup-retrofit2 = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+squareup-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+squareup-logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "loggingInterceptor" }
+google-gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+okhttp-json-mock = { module = "com.github.mirrajabi:okhttp-json-mock", version.ref = "okHttpJsonMock" }
 
 androidx-test-ext-junit = { module = "androidx.test.ext:junit", version.ref = "androidxTestExt" }
 androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidxTestRunner" }
@@ -56,7 +69,31 @@ androidx-test-runner = { module = "androidx.test:runner", version.ref = "android
 detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 
+chucker-library = { module = "com.github.chuckerteam.chucker:library", version.ref = "chucker" }
+chucker-library-noop = { module = "com.github.chuckerteam.chucker:library-no-op", version.ref = "chucker" }
+
 [bundles]
+kotlinx-coroutines = [
+    "kotlinx-coroutines-core",
+    "kotlinx-coroutines-android"
+]
+
+androidx-room = [
+]
+
+androidx-retrofit2 = [
+    "squareup-retrofit2",
+    "squareup-converter-gson",
+    "squareup-logging-interceptor",
+    "okhttp-json-mock",
+    "google-gson"
+]
+
+androidx-navigation = [
+]
+
+androidx-liefcycle = [
+]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }

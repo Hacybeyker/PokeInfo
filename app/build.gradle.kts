@@ -40,7 +40,12 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("String", "BASE_URL", "\"YOUR_BASE_URL\"")
+            buildConfigField("String", "BASE_URL", ConstantsApp.Release.BASE_URL)
+            buildConfigField(
+                "boolean",
+                "IS_DEVELOPMENT",
+                ConstantsApp.Release.IS_DEVELOPMENT.toString()
+            )
         }
         create("qa") {
             initWith(getByName("debug"))
@@ -53,7 +58,12 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("String", "BASE_URL", "\"YOUR_BASE_URL\"")
+            buildConfigField("String", "BASE_URL", ConstantsApp.QA.BASE_URL)
+            buildConfigField(
+                "boolean",
+                "IS_DEVELOPMENT",
+                ConstantsApp.QA.IS_DEVELOPMENT.toString()
+            )
         }
         getByName("debug") {
             isDebuggable = true
@@ -65,7 +75,12 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("String", "BASE_URL", "\"YOUR_BASE_URL\"")
+            buildConfigField("String", "BASE_URL", ConstantsApp.Debug.BASE_URL)
+            buildConfigField(
+                "boolean",
+                "IS_DEVELOPMENT",
+                ConstantsApp.Debug.IS_DEVELOPMENT.toString()
+            )
         }
     }
 
@@ -143,8 +158,8 @@ android {
     tasks {
         "preBuild" {
             dependsOn("ktlintFormat")
-            // dependsOn("ktlintCheck")
-            // dependsOn("detekt")
+            dependsOn("ktlintCheck")
+            dependsOn("detekt")
         }
     }
 }
@@ -179,6 +194,13 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.constraintlayout.compose)
 
+    // Coroutines
+    implementation(libs.bundles.kotlinx.coroutines)
+
+    // Rertrofit
+    implementation(libs.bundles.androidx.retrofit2)
+    // Room
+
     // Tooling
     debugImplementation(libs.androidx.compose.ui.tooling)
 
@@ -200,6 +222,9 @@ dependencies {
 
     // Detekt
     detektPlugins(libs.detekt.formatting)
+    debugImplementation(libs.chucker.library)
+    "qaImplementation"(libs.chucker.library)
+    releaseImplementation(libs.chucker.library.noop)
 
     // Coil
     implementation(libs.coil.compose)

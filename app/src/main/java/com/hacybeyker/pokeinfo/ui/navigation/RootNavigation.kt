@@ -1,13 +1,10 @@
 package com.hacybeyker.pokeinfo.ui.navigation
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.hacybeyker.pokeinfo.R
 import com.hacybeyker.pokeinfo.ui.favorite.FavoriteScreen
 import com.hacybeyker.pokeinfo.ui.home.HomeScreen
 
@@ -25,8 +22,8 @@ fun RootNavigation(navController: NavHostController) {
 sealed class Routes(
     val route: String,
     val title: String,
-    val icon: ImageVector
+    val icon: Int
 ) {
-    object HomeRoute : Routes("home_graph", "Home", Icons.Filled.Home)
-    object FavoriteRoute : Routes("favorite_graph", "Favorite", Icons.Filled.Favorite)
+    object HomeRoute : Routes("home_graph", "Home", R.drawable.pokedex)
+    object FavoriteRoute : Routes("favorite_graph", "Favorite", R.drawable.pokeball)
 }
